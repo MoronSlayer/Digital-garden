@@ -1,15 +1,15 @@
 name: github pages
 
-on: [push]
-  branches:
-    - main
-  pull_request:
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-22.04
     steps:
-      - name: Chekout Repo
+      - name: Checkout Repo
         uses: actions/checkout@v3
         with:
           submodules: true  # Fetch Hugo themes (true OR recursive)
