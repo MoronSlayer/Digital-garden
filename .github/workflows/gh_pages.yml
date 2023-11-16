@@ -1,16 +1,16 @@
 name: github pages
 
-on:
-  push:
-    branches:
-      - main
+on: [push]
+  branches:
+    - main
   pull_request:
 
 jobs:
   deploy:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
+      - name: Chekout Repo
+        uses: actions/checkout@v3
         with:
           submodules: true  # Fetch Hugo themes (true OR recursive)
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
