@@ -38,15 +38,15 @@
                     {{ range . }}
                     <span class="badge tag-badge">{{ . }}</span>
                     {{ end }}
-                {{ end }}
+                {{ end }}               
                 {{ with .Params.garden_tags }}
                     {{ range . }}
-                    <span class="badge tag-badge">{{ . }}</span>
+                    <span onclick="handleTagClick('{{ . }}', 'garden')" class="badge tag-badge">{{ . }}</span>                   
                     {{ end }}
                 {{ end }}
                 {{ with .Params.project_tags }}
                     {{ range . }}
-                    <span class="badge tag-badge">{{ . }}</span>
+                    <span onclick="handleTagClick('{{ . }}', 'projects')" class="badge tag-badge">{{ . }}</span>
                     {{ end }}
                 {{ end }}
                 </div>
