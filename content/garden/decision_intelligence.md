@@ -46,4 +46,94 @@ That's what you'll want to look at.
 
 ### What makes some decsions more difficult than others? 
 
-The fewer options you have to choose from, the easier the decision can be chosen.
+Here are some of the variables involved in simple vs. complex decision making:
+- The fewer options you have to choose from, the easier the decision can be chosen.
+- An obvious winner makes the decision making process easy.
+- Clear objectives makes the decision easier.
+- Lower cost makes the decision easier, cost of making the decision and cost of executing and cost of mistakes.
+- Reversible decisions are easier
+- Cognitively effort taking decsions are harder to take.
+- Low pressure and low stress makes the decision easier.
+- More and better information makes the decision easier.
+- Less risk and ambiguity (knowing the probability and not) makes decisions easier.
+- Fewer stakeholders make it easy to take a decision.
+- Internal conflicts and adversarial effects, affect decision making.
+
+### Setting Goals
+
+First, think about your **priorities** and **opportunities**
+Because, you'll be spending resources at your disposal: time, attention, effort, and money. 
+
+To think about Priorities, start thinking about your non-priorities first.
+
+Goal setting **mistakes**:
+- too concrete
+- too vague
+
+Types of Goals: 
+
+- **Outcome** goals: The win you're actually interested in.
+- **Performance** goals: Measurable and mostly under your control.
+- **Process** goals: Measurable and fully under your control.
+
+To set goals, think in all these 3 perspectives, as an e.g.: get healthy, run for 45 minutes without stopping and run for 45 minutes every other day. 
+
+Your process goals should help you get closer to your performance goals which will ultimately lead to the vague yet desired outcome goal. 
+
+## The value of Clairvoyance
+
+The effort, information and data put towards a decision.
+
+Don't overspend or underspend resources on decisions.
+
+Start by visualizing the best and worst case scenarios that can come out of your decision.
+
+The point of clairvoyance: If you could have certainty, what is the most (resource) you would pay for it?
+
+> **What would be the maximum amount of resources you would put towards a perfectly exectuted decision?**
+
+If the value isn't high, use intuition, i.e., in making low value decisions.
+No point in overspending effort when the stakes are really low.
+If you have expertise or decisions are unstructed (Is this a good piece of art?), intuition can help.
+
+> A good decision maker does justice to what's at stake.
+
+## We are human, after all
+
+There are various factors that affect our decision making skills, like the stress you've been under, how much sleep you've had or your blood sugar levels. 
+
+Try to create optimal conditions for your decision making or evaluate and push the decision making process for a later stage. Prevent irrevocable allocation of resources.
+
+> **Principal Agent Problem** 
+>> A conflict in priorities between the owner of a business and the agent managing the business.  
+
+Solution: Create constraints so that the agent is unable to take decisions that go against the prinipal. 
+
+By building contraints on your ability to make sub-optimal decisions, you can create paths that will reward your long term goals. Foe e.g., if you want to be healthy, avoid getting chocolates as snacks and instead get some fruits, so the next time your blood sugar levels are low, you grab an apple instead. 
+
+## Why are people indecisive? 
+1. It might be a simple Bad Habit
+
+There is no such thing as not making a decision, instead there is an implicit decision to: 
+- Delay a decision
+- Postpone a decision
+- Deprioritize a decision
+
+2. Distracted by other decisions
+
+> Be intentional about your priorities.
+
+3. Grief and Emotions
+
+> If all options are bad, pick the least worst option and move on.
+
+4. Similar Options
+
+## Confirmation Bias
+
+**What you already believe affects how you perceive information**
+
+> Don't assume that data leads to **objectivity**
+
+
+
