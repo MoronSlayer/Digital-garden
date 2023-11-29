@@ -10,5 +10,5 @@ I'm passionate about **Data Science**, **Machine Learning**, **Data Engineering*
 
 I hold a Master of Science in **Applied Artificial Intelligence** from [Stevens Institute of Technology - Schaefer School of Engineering and Science](https://www.stevens.edu/school-engineering-science), gaining extensive experience with machine learning, deep learning models and analyzing complex data sets to provide informative insights.
 
-I have previously worked as a Full Stack Application developer where I learnt the fundamentals required in the software industry, from version control, code review to deployment on cloud. 
+I have previously worked as a Full Stack Application developer where I learnt the fundamentals required in the software industry, from version control, code reviewe to deployment on cloud. 
 
