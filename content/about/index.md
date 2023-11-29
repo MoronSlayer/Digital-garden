@@ -1,13 +1,14 @@
 ---
 title: "Ritesh Panditi"
 date: 2015-01-01
-summary: "Himalayan red panda"
+summary: "AI and Data Practitioner: Engaged in ML, Analytics, and Engineering Solutions
+"
 layout: about
 ---
 
-I have a reddish-brown fur, a long, shaggy tail, and a waddling gait due to my shorter front legs; I'm roughly the size of a domestic cat, though with a longer body.
-I live in trees and feed mainly on bamboo, but I also eat eggs, birds, and insects. Changed
+I'm passionate about **Data Science**, **Machine Learning**, **Data Engineering** and **Analytics**. With the rapid progress of computing power and technology, I believe in the immense potential that data-driven applications can have in our world.
 
-I joined the IUCN Endangered species red list in 2008 as a result of a constant population decline caused by habitat loss, poaching and inbreed depression.
+I hold a Master of Science in **Applied Artificial Intelligence** from [Stevens Institute of Technology - Schaefer School of Engineering and Science](https://www.stevens.edu/school-engineering-science), gaining extensive experience with machine learning, deep learning models and analyzing complex data sets to provide informative insights.
 
-For more information, you can take a look at my [Wikipedia page](https://en.wikipedia.org/wiki/Red_panda_)
+I have previously worked as a Full Stack Application developer where I learnt the fundamentals required in the software industry, from version control, code review to deployment on cloud. 
+

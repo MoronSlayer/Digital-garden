@@ -1,7 +1,7 @@
 ---
 title: "Notes on Decision Intelligence"
 date: 2023-11-17
-lastmod: 2023-11-17
+lastmod: 2023-11-19
 draft: false
 garden_tags: ["data", "decision-making"]
 summary: " "
