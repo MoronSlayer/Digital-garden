@@ -13,17 +13,50 @@
 <!-- Filter Buttons -->
 <div class="container mb-5">
 
-    <!-- Multiple checkboxes option -->
-    <div class="btn-toolbar mb-2 bio" role="toolbar" aria-label="Toolbar with button groups">
-        <i class="fas fa-filter"></i>
-        <div id="filters" class="button-group">
-            {{ range $name, $taxonomy := .Site.Taxonomies.garden_tags }}
-            {{ $btnid := $name | printf ".js-iso-%s"}}
-            <input type="checkbox" class="btn-check" id="{{ $btnid }}" autocomplete="off" data-filter="{{ $btnid }}">
-            <label class="button" for="{{ $btnid }}">{{ $name }}</label>  
+        <!-- Multiple checkboxes option -->
+        <!-- <div class="btn-toolbar mb-2 bio" role="toolbar" aria-label="Toolbar with button groups">
+            <i class="fas fa-filter"></i>
+            <div id="filters" class="button-group">
+                {{ range $name, $taxonomy := .Site.Taxonomies.garden_tags }}
+                {{ $btnid := $name | printf ".js-iso-%s"}}
+                <input type="checkbox" class="btn-check" id="{{ $btnid }}" autocomplete="off" data-filter="{{ $btnid }}">
+                <label class="button" for="{{ $btnid }}">{{ $name }}</label>  
+                {{ end }}
+            </div>
+        </div> -->
+
+        <!-- Test -->
+
+        <!-- {{ range .Site.RegularPages }}
+            {{ with .Params.garden_tags }}
+                {{ range . }}
+                <input type="checkbox" class="btn-check" id="{{ . }}" autocomplete="off" data-filter="{{ . }}">
+                <label class="button" for="{{ . }}">{{ . }}</label>
+                {{ end }}
             {{ end }}
-        </div>
-    </div>
+        {{ end }} -->
+        <!-- Test 2 -->
+
+        <!-- {{ $uniqueTagsMap := dict }}
+{{ range .Site.RegularPages }}
+    {{ with .Params.garden_tags }}
+        {{ range . }}
+            {{ $tag := . }}
+            {{ $btnid := printf ".js-iso-%s" $tag | urlize }}
+            {{ if not (isset $uniqueTagsMap $btnid) }}
+                {{ $uniqueTagsMap = merge $uniqueTagsMap (dict $btnid $tag) }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+<div id="filters" class="button-group">
+    {{ range $btnid, $tag := $uniqueTagsMap }}
+        <input type="checkbox" class="btn-check" id="{{ $btnid }}" autocomplete="off" data-filter="{{ $btnid }}">
+        <label class="button" for="{{ $btnid }}">{{ $tag }}</label>
+    {{ end }}
+</div> -->
+
 
     <!-- Single checkbox option -->
     <!-- Please switch comment in isotope.js for this to work -->
