@@ -136,6 +136,6 @@ There is no such thing as not making a decision, instead there is an implicit de
 > Don't assume that data leads to **objectivity**
 
 There are many cognitive illusions that your mind plays when you are trying to take a decision objectively, framing is another one.
-
+----
 
 
