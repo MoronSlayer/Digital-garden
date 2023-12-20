@@ -3,7 +3,7 @@ title: "Now is the time for Full stack Deep Learning"
 date: 2023-11-24
 lastmod: 2023-11-24
 draft: false
-garden_tags: ["data", "Deep-Learning"]
+garden_tags: ["data", "deep-learning"]
 summary: " "
 status: "seeding"
 ---
