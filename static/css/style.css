@@ -203,7 +203,7 @@ code {
   padding-bottom: 10px;
 }
 .tag-badge {
-  background-color: var(--blue);
+  background-color: #4B0082;  
   font-family: var(--headings);
   font-weight: 400;
 }
