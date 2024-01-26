@@ -14,6 +14,7 @@ This is the architecture used in the course.
 Tools used as part of this course are:
 - #### [Docker](#docker)
 - #### [PostgresSQL](#ingesting-ny-taxi-data-to-postgres)
+- #### [pgAdmin](#connecting-pgadmin-and-postgres)
 # Week 1
 
 ### Docker
@@ -201,3 +202,167 @@ We are now connected to our database using pgAdmin and can view and query it. Le
 Databases --> Schemas --> Tables --> Yellow_taxi_data, right click --> View/Edit Data --> First 100 rows 
 
 {{< figure src="./first100.png"  width="100%" >}}
+
+### Dockerizing the Ingestion Script
+
+Now, we convert the ipynb file to a script, using 
+
+```python
+ jupyter nbconvert --to=script upload_data.ipynb
+```
+
+We do this so that we can create a data ingestion pipeline using argparse in python, downloading the data and inserting the data into the table using a script.
+
+We add the argarse and convert the notebook to an ingestion script, as seen in ingest_script.py.
+
+We can now drop the table from pgAdmin using 
+```SQL
+DROP TABLE yellow_taxi_data 
+```
+and run the script to see if it's working.
+
+We can now use the following script from the command line to run the data ingestion pipeline, downloading data and creating a table using ingest_data.py .
+
+```bash
+URL="https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-07.csv.gz"
+
+python3 ingest_data.py \
+  --user=root \
+  --password=root \
+  --host=localhost \
+  --port=5432 \
+  --db=ny_taxi \
+  --table_name=yellow_taxi_trips \
+  --url=${URL}
+```
+
+Now, we will dockerize this ingestion process by creating a Dockerfile in our working directory:
+
+```Docker
+FROM python:3.9.1
+
+RUN apt-get install wget
+RUN pip install pandas sqlalchemy psycopg2
+
+WORKDIR /app
+COPY ingest_data.py ingest_data.py 
+
+ENTRYPOINT [ "python", "ingest_data.py" ]
+```
+
+and then running this in our command line:
+
+```bash
+docker build -t taxi_ingestion:v001 .
+```
+
+Once it's built, we create a docker script to run the ingestion pipeline using
+
+```docker
+docker run -it \
+ --network=pg-network \
+ taxi_ingestion:v001 \
+  --user=root \
+  --password=root \
+  --host=pg-database \
+  --port=5432 \
+  --db=ny_taxi \
+  --table_name=yellow_taxi_trips \
+  --url=${URL}
+
+```
+### Running Postgres and pgAdmin with Docker compose
+
+Previously, we run postgres and pgAdmin in one Docker network and there was a lot of configuration to be done. So instead of using two docker commands, we can specify a single YAML file that will help us do this task.
+
+We create a compose-docker.yaml file as shown below
+
+```docker
+services:
+  pgdatabase:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=ny_taxi
+    volumes:
+      - "./ny_taxi_postgres_data:/var/lib/postgresql/data:rw"
+    ports:
+      - "5432:5432"
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=root
+    ports:
+      - "8080:80"
+```
+
+Now, pgdatabase will be the name we can access postgres with and both postgres and pgadmin will be in the same network as we are using docker compose, no need for creating another network.
+
+Now, we stop the containers with postgres and pgadmin.
+
+Ensure nothing is running with ``` docker ps ``` and use ` docker kill <containerID>` to stop any container you want.
+
+We can now run ` docker-compose up ` to run docker compose using our YAML file and configure both pgadmin and postgres. 
+
+Running `docker-compose up`and restarting localhost:8080 created problems in my system when trying to create a new server, as there were problems with postgres.
+Specificially, a local bind ./ny_taxi_postgres_data seemed to throwing a permissions error, to resolve this, we can change the docker-compose.YAML file as follows:
+
+```docker
+services:
+  pgdatabase:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=ny_taxi
+    volumes:
+      - dtc_postgres_volume_local:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=root
+    ports:
+      - "8080:80"
+volumes:
+    dtc_postgres_volume_local:
+```
+
+Here, instead of using a bind mount from a local directory ("./ny_taxi_postgres_data:/var/lib/postgresql/data:rw"), we use a named volume that is actually present in a docker container, this resolves the permission errors and we can now access the database from pgAdmin.
+
+However, here I was unable to access the table after connecting to pgAdmin, so I had to reingest the data using   
+
+```docker
+URL="https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-07.csv.gz"
+
+docker run -it \
+ --network=docker_sql_default \
+ taxi_ingestion:v001 \
+  --user=root \
+  --password=root \
+  --host=pgdatabase \
+  --port=5432 \
+  --db=ny_taxi \
+  --table_name=yellow_taxi_trips \
+  --url=${URL}
+
+```
+docker_sql_default is the name from system when running docker-compose up and the new host is pgdatabase as specified in our YAML file.
+
+{{< figure src="./docker_compose_up.png"  width="100%" >}}
+
+We can also run docker compose in detached mode using 
+
+```docker
+docker-compose up -d 
+```
+where we will be able to use the terminal after running it.
+
+To shut it down, use 
+```docker
+docker-compose down
+```
