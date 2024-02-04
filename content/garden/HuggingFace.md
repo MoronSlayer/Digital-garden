@@ -2,7 +2,7 @@
 title: "HuggingFace NLP"
 date: 2023-12-05
 lastmod: 2023-12-05
-draft: false
+draft: true
 garden_tags: ["natural_language_processing"]
 summary: " "
 status: "seeding"

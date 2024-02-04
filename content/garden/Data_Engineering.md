@@ -15,7 +15,9 @@ Tools used as part of this course are:
 - #### [Docker](#docker)
 - #### [PostgresSQL](#ingesting-ny-taxi-data-to-postgres)
 - #### [pgAdmin](#connecting-pgadmin-and-postgres)
-# Week 1
+- #### [Terraform](#terraform)
+
+# Week 1 (Docker | postgres | pgAdmin | Terraform | GCP)
 
 ### Docker
 
@@ -366,3 +368,14 @@ To shut it down, use
 ```docker
 docker-compose down
 ```
+
+### Terraform
+
+Terraform is an open-source infrastructure as code (IaC) software tool created by HashiCorp. It allows users to define and provision a datacenter infrastructure using a high-level configuration language known as HashiCorp Configuration Language (HCL), or optionally JSON.
+
+#### Why use Terraform?
+
+- Simplicity in keeping track of infrastructure
+- Easier Collaboration
+- Reproducibility
+- Ensure resources are removed
