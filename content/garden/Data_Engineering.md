@@ -1,7 +1,7 @@
 ---
 title: "Data Engineering"
 date: 2024-01-25
-lastmod: 2024-01-25
+lastmod: 2024-02-07
 draft: false
 garden_tags: ["data"]
 summary: "Notes from data engineering zoomcamp"
@@ -17,11 +17,25 @@ Tools used as part of this course are:
 - #### [pgAdmin](#connecting-pgadmin-and-postgres)
 - #### [Terraform](#terraform)
 
+<!-- Table beautifier - http://markdowntable.com/  -->
+
+<!-- | Week 1                                                                                    | Week 2    | Week 3    | Week 4    | Week 5    | Week 6    |
+|-------------------------------------------------------------------------------------------|-----------|-----------|-----------|-----------|-----------|
+| [Docker](#docker)                                                                         | Topic 2.1 | Topic 3.1 | Topic 4.1 | Topic 5.1 | Topic 6.1 |
+| [PostgresSQL](#ingesting-ny-taxi-data-to-postgres)                                        | Topic 2.2 | Topic 3.2 | Topic 4.2 | Topic 5.2 | Topic 6.2 |
+| [pgAdmin](#connecting-pgadmin-and-postgres)                                               | Topic 2.3 | Topic 3.3 | Topic 4.3 | Topic 5.3 | Topic 6.3 |
+| [Dockerizing the Ingestion Script](#dockerizing-the-ingestion-script)                     | Topic 2.4 | Topic 3.4 | Topic 4.4 | Topic 5.4 | Topic 6.4 |
+| [Terraform](#terraform)                                                                   | Topic 2.5 | Topic 3.5 | Topic 4.5 | Topic 5.5 | Topic 6.5 |
+| [Basics of Terraform](#basics-of-terraform)                                               |           |           |           |           |           |
+| [Terraform deployment with a variables file](#terraform-deployment-with-a-variables-file) |           |           |           |           |           | -->
+
 # Week 1 (Docker | postgres | pgAdmin | Terraform | GCP)
 
 ### Docker
 
 Docker is a platform that uses containerization technology to simplify the process of developing, deploying, and running applications. By using Docker, you can package your application and its dependencies into a container, which can then run on any system that has Docker installed. This ensures consistency across environments and reduces the "it works on my machine" problem.
+
+For example, you might be developing an application in python 3.5 but the production server in your company uses python 3.8 or you might be developing on a MAC or Linux based system and you share your code with your friend who uses a Windows machine. These situations where there are discrepencies in the specifics of the environment where development is done is why docker is a popular tool in the modern day. It is a much better alternative to virtual machines as it does not as much computational resources.
 
 Key concepts in Docker include:
 
@@ -39,6 +53,8 @@ Key concepts in Docker include:
 
 Docker simplifies the deployment process, ensures consistency, and is widely used in DevOps practices for continuous integration and continuous deployment (CI/CD) workflows.
 
+
+After you [install docker](https://docs.docker.com/engine/install/) you can run **``` docker run hello-world ```** to check if it works.
 ### Ingesting NY Taxi Data to Postgres
 
 PostgreSQL, often referred to as Postgres, is an open-source, powerful, advanced, and feature-rich relational database management system (RDBMS). It is designed to handle a range of workloads, from single machines to data warehouses or web services with many concurrent users.
@@ -379,3 +395,210 @@ Terraform is an open-source infrastructure as code (IaC) software tool created b
 - Easier Collaboration
 - Reproducibility
 - Ensure resources are removed
+Install Terraform and add it to your Systems PATH environment variable.
+
+
+#### Basics of Terraform
+
+Now, let's go through some of the basics of Terraform using GCP as our cloud provider.
+
+First creative a service account in GCP from the IAM & Admin panel called terraform-runner in your project, as seen in the image
+
+{{< figure src="./terraform_basics1.png"  width="100%" >}}
+
+We are adding cloud storage(cloud Admin), BigQuery Admin and Compute Engine(Compute Admin) roles for our service account.
+
+Create keys in JSON for your service accounts and save it in your project folder under my_creds.json 
+
+**MAKE SURE TO NEVER MAKE YOUR KEY PUBLIC**
+
+Then go to [Terraform GCP registry](https://registry.terraform.io/providers/hashicorp/google/latest/docs), which is how you can manage your GCP infrastructure using Terraform. Copy the code under Use provider into a main.tf file in your project. It should like this, use latest code from link.
+
+```javascript
+terraform {
+  required_providers {
+    google = {
+      source = "hashicorp/google"
+      version = "5.15.0"
+    }
+  }
+}
+
+provider "google" {
+  project     = "my-project-id"
+  region      = "us-central1"
+}
+```
+One way to enter the credentials would be to include 
+
+```javascript
+provider "google" {
+  credentials = "./keys/my_creds.json"
+  project     = "my-project-id"
+  region      = "us-central1"
+}
+```
+
+Alternatively, as a safer way, I have downloaded the [GCloud CLI](https://cloud.google.com/sdk/docs/install) and run the following terminal command **```gcloud auth application-default login ```** in your project folder and then set your project using **``` gcloud config set project PROJECT_ID  ```**. 
+
+Then run **``` terraform init  ```**
+You will see that there is a provider file and a lock file generated in your project as seen in the image below.
+
+{{< figure src="./terraform_lock.png"  width="100%" >}}
+
+
+Now let's see how we can create buckets. Through the GCP console in your project, you can see that your buckets are empty under Cloud Storage. 
+
+Look up for Terraform GCP buckets on the internet and open the Terraform link, [currently](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket) to get the terraform code for GCP storage buckets.
+
+Add some of the example code to your main.tf file
+
+```javascript
+
+resource "google_storage_bucket" "demo-bucket" {
+  name          = "terraform-demo-413704"
+  location      = "US"
+  force_destroy = true
+
+
+
+  lifecycle_rule {
+    condition {
+      age = 3
+    }
+    action {
+      type = "Delete"
+    }
+  }
+
+
+  lifecycle_rule {
+    condition {
+      age = 1
+    }
+    action {
+      type = "AbortIncompleteMultipartUpload"
+    }
+  }
+}
+
+```
+
+The "demo-bucket' part is a local variable that you can use to reference your google storage bucket later, it need not be unique but the name has to be globally unique, which is why I have used my project id as name here. 
+
+Then run **``` terraform plan ```**. 
+
+> If there is an authentication error, set the environment variable(on Windows), using **```set "GOOGLE_APPLICATION_CREDENTIALS=C:\Users\PATH_TO\application_default_credentials.json"```** . We will see a better alternative in the upcoming section.
+
+{{< figure src="./terraform_plan.png"  width="100%" >}}
+
+Then run **``` terraform apply ```** and select yes, you should a new state file pop up in your project now.
+
+If we go back to our GCP console and see the cloud storage buckets, we can see that a new bucket is now created.
+
+We can now run **``` terraform destroy ```** to destroy the bucket and revert our changes.
+
+> **Make sure to add a .gitignore file with terraform .gitgnore variables(a quick google search will bring up a git repo [as seen here](https://github.com/github/gitignore/blob/main/Terraform.gitignore)), all add your credentials file to the .gitgnore by adding *.json in your .gitignore file. 
+
+> What is .gitgnore? Anything listed within a file named .gitignore in your project directory will not be tracked by git and will not be a part of commits and pushes to your repository. For sensitive or irrelevant data, it is important to add a .gitgnore file
+
+#### Terraform deployment with a variables file
+
+Now, let's extend out main.tf file to include a big query dataset resource.
+```javascript
+resource "google_bigquery_dataset" "demo_dataset" {
+  dataset_id = "example_dataset"
+}
+```
+On running **``` terraform apply ```**, we can see on our GCP console that we have a demo_dataset created in BigQuery.
+
+Now let's create a variables.tf file with the following variables, to understand the working:
+
+```javascript
+variable "credentials" {
+  description = "Service account credentials"
+  default     = "./keys/my_creds.json"
+}
+
+variable "location" {
+  description = "Project location"
+  default     = "US"
+}
+
+variable "project" {
+  description = "Project "
+  default     = "terraform-demo-413704"
+}
+
+
+variable "bq_dataset_name" {
+  description = "My BigQuery dataset name"
+  default     = "demo_dataset"
+}
+
+variable "gcs_bucket_name" {
+  description = "My storage bucket name"
+  default     = "terraform-demo-413704"
+}
+
+variable "gcs_storage_class" {
+  description = "Bucket storage class"
+  default     = "STANDARD"
+}
+
+variable "region" {
+  description = "Region"
+  default     = "us-central1"
+}
+```
+
+Now our main.tf will use variables from our variables.tf file as seen below:
+
+```javascript
+terraform {
+  required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = "5.15.0"
+    }
+  }
+}
+
+provider "google" {
+  credentials = file(var.credentials)
+  project = var.project
+  region  = var.region
+}
+
+resource "google_storage_bucket" "demo-bucket" {
+  name          = var.gcs_bucket_name
+  location      = var.location
+  force_destroy = true
+
+  lifecycle_rule {
+    condition {
+      age = 3
+    }
+    action {
+      type = "Delete"
+    }
+  }
+
+  lifecycle_rule {
+    condition {
+      age = 1
+    }
+    action {
+      type = "AbortIncompleteMultipartUpload"
+    }
+  }
+}
+
+resource "google_bigquery_dataset" "demo_dataset" {
+  dataset_id = var.bq_dataset_name
+  location   = var.location
+}
+
+```
+
+Now we use the command **``` terraform plan ```** and then **``` terraform apply ```**, we can see that we created 2 resources a BigQuery dataset and a GCS cloud storage, and now we have successfully used a variables file.
