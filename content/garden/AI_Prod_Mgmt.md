@@ -8,11 +8,11 @@ summary: "**AI**, a strategic tool for Product Managers of the 21st Century"
 status: "seeding"
 ---
 
-# What is AI? 
+### What is AI? 
 
 Giving cognitive capabilities to machines
 
-## Currently most used subfields of AI
+### Currently most used subfields of AI
 
 - **Machine Learning** - A branch of AI that focuses on the use of data and algorithms to 
 imitate the way humans learn and gradually improve its accuracy.
@@ -21,7 +21,7 @@ and sound) and often produces more accurate results than traditional machine lea
 - **NLP** - technology that helps machines process and 
 understand human language so that they can automatically perform repetitive tasks.
 
-# How Product Managers should think of AI 
+### How Product Managers should think of AI 
 - A tool to help build your product
 - A capability you can build into your product
 
@@ -33,7 +33,7 @@ While leadership is bullish on AI considering it's unknown impacts, induviduals 
 
 AI will not replace Product managers now or in the future, but rather offers a tool to automate and speed up certain tasks.
 
-## AI's place in building products
+### AI's place in building products
 
 1. **Data Analysis** - Automatically recognize patterns and trends in a data set. Collecting, analyzing and distilling quantitative data like product usage and user journeys; and qualitative data like customer feedback.
 Decision making examples include: 
@@ -73,11 +73,11 @@ Some use cases of AI for product managers are:
 - creating in-app content
 - tailoring worklows to give a highly personalized experience to users
  
-## Adapting your software strategy in the AI era
+## #Adapting your software strategy in the AI era
 
 AI will impact product management by changing the way managers analyze quantitative and qualitative data. Also shaping the in-product experience and users' abilities. Just like the iPhone created a revolution in the cellphone space, AI is a modern revolution and companies will have to adapt.
 
-#### Questions to remember on you might bring AI to your product?
+### Questions to consider on how you might bring AI to your product
 
 1. What parts on your product need to change? 
 
@@ -107,3 +107,25 @@ by AI, like a self-driving car
 learning question. Think about how you start with level two, and then use feedback and other data to move to level three.
 - Great AI does not necessarily equal a great product.
 - In the end, the product manager controls the roadmap
+
+### AI and the product-led organization
+
+A product-led organization is a business that rallies the entire company around the 
+product so each team can leverage it to achieve their most important outcomes. This will help to better understand customers and drive key business outcomes.
+
+#### Six characteristics of product-led organizations:
+
+1. Align each function around the product
+2. Make decisions with data over gut feel
+3. Use the product as a marketing channel
+4. Have amazing onboarding
+5. Help users help themselves
+6. Collect and use feedback from customers
+
+#### Examples of leveraging AI across a product-led organization:
+- AI and machine learning tools can better process and organize data, enabling teams to 
+make more—and faster—data-driven decisions.
+- AI can analyze user behavior in the product to identify engagement patterns and 
+proactively suggest features or content to highlight during onboarding.
+- In-product chatbots can interact with users to address pain points, offer recommendations 
+to encourage ideal usage, and provide personalized support at scale
