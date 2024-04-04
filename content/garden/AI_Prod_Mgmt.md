@@ -73,7 +73,7 @@ Some use cases of AI for product managers are:
 - creating in-app content
 - tailoring worklows to give a highly personalized experience to users
  
-## #Adapting your software strategy in the AI era
+### Adapting your software strategy in the AI era
 
 AI will impact product management by changing the way managers analyze quantitative and qualitative data. Also shaping the in-product experience and users' abilities. Just like the iPhone created a revolution in the cellphone space, AI is a modern revolution and companies will have to adapt.
 
