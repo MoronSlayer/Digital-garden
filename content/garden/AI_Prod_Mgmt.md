@@ -129,3 +129,72 @@ make more—and faster—data-driven decisions.
 proactively suggest features or content to highlight during onboarding.
 - In-product chatbots can interact with users to address pain points, offer recommendations 
 to encourage ideal usage, and provide personalized support at scale
+
+###  Powering product-led growth(PLG) with AI
+
+#### 6 Principles of product-lead growth
+
+1. Producing a free user experience 
+
+This is where any PLG strategy with substance has to start. Premised on the idea that there is no better sales vehicle than the product itself. Cumbersome product demos and follow up sequences both take time from sales representatives both take time from sales representatives and become friction points for prospects. Instead teams should let users see the value of product delivers for themselves whenever it's convinient for them.
+
+Types of free user experiences:
+
+ - Free trials - which give the full functionality of the product for a limited time
+ - Freemium products - always fre but offer a limited version of the product in terms of functionality, usage and support
+ - Product tours - without a free option, you can simulate the experience with which user's can explore your application without ever accessing it or needing to sign up
+
+ 2. Delivering an 'aha' moment as soon as possible
+
+Users should experience the product's key benefits as soon as possible.
+Many ways to do this, but a very useful one is having an in-app guide that takes users directly to the experience of feature that leads to the 'aha' moment.
+
+3. Commiting to best-in-class usability
+
+Design your free product with optimized UX and usability, not any cluttered or unituitive digital experience.
+
+4. Delighting users to ensure stickiness
+
+Robust feedback mechanisms and quantitative data are crucial here to help product teams decide what features and functionalities to prioritize.
+
+5. Making the purchasing feel like the natural next step.
+
+Have in-app CTA's to take users directly to the purchase plan page
+
+6. Building in virality at every turn
+
+Ability to continually surprise and delight users so that they eventually become evangelists.
+
+###  Making product development smarter
+
+#### What is the product development life cycle?
+
+A cyclical cycle:
+
+- phase 0 - Business outcome - a clear objective to anchor what you want to achieve
+
+- phase 1  - discover - understand the problem's standing in the way of achieving it
+
+Ask questions like what's preventing customer's from retaining at a higher right? what's blocing adoption? what do users need to be more successful.
+
+Uncover and understand the pain points of customers and the larger market.
+
+- phase 2 - determine the right solution for users
+
+- phase 3 - build 
+
+Work with product designers and engineers to ensure your idea comes to life as intended 
+or determine how to pivot if needed
+
+- phase 4 - launch
+
+Build a launch plan to ensure customers adopt and continue using new functionality.
+Here, you'll work closely with marketing, customer success and sales teams to make a go-to market plan that connects to your target audience and shapes their behaviour.
+
+- phase 5 - evaluate
+
+After you launch, evaluate it sucess with both quantitative and qualitative data.
+
+- phase 6 - iterate
+
+
