@@ -1,7 +1,7 @@
 ---
 title: "AI Product Management"
-date: 2024-01-14
-lastmod: 2024-02-03
+date: 2024-04-24
+lastmod: 2024-04-28
 draft: false
 garden_tags: ["Ai ", "product-management"]
 summary: "**AI**, a strategic tool for Product Managers of the 21st Century"
